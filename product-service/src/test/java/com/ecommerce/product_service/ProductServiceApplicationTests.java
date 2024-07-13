@@ -1,6 +1,7 @@
 package com.ecommerce.product_service;
 
 import com.ecommerce.product_service.dto.ProductRequest;
+import com.ecommerce.product_service.dto.ProductResponse;
 import com.ecommerce.product_service.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Assertions;
@@ -44,13 +45,22 @@ class ProductServiceApplicationTests {
 	}
 
 	@Test
-	void shouldCreateProduct() throws Exception {
+	void checkCreateProduct() throws Exception {
 		ProductRequest productRequest = getProductRequest();
 		String objectRequestString= objectMapper.writeValueAsString(productRequest);
 		mockMvc.perform(MockMvcRequestBuilders.post("/api/product")
 					.contentType(MediaType.APPLICATION_JSON)
 					.content(objectRequestString))
 				.andExpect(status().isCreated());
+		Assertions.assertEquals(1, productRepository.findAll().size());
+	}
+
+	@Test
+	void checkGetAllProducts() throws Exception{
+//		ProductResponse productResponse=getProductResponse();
+//		String objectResponseString=objectMapper.writeValueAsString(productResponse);
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/product"))
+				.andExpect(status().isOk());
 		Assertions.assertEquals(1, productRepository.findAll().size());
 	}
 
@@ -61,5 +71,14 @@ class ProductServiceApplicationTests {
 				.price(BigDecimal.valueOf(1200))
 				.build();
 	}
+
+	private ProductResponse getProductResponse(){
+		return ProductResponse.builder()
+				.name("iPhone 13")
+				.description("iPhone 13")
+				.price(BigDecimal.valueOf(1200))
+				.build();
+	}
+
 
 }
