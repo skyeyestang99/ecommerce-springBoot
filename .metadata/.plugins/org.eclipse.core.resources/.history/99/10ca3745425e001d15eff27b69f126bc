@@ -1,0 +1,26 @@
+package com.yizhou.springboot.springbootproject;
+
+public class Course {
+	private long id;
+	private String name;
+	private String author;
+	
+	public long getId() {
+		return id;
+	}
+	public String getName() {
+		return name;
+	}
+	public String getAuthor() {
+		return author;
+	}
+	
+	@Override
+	public String toString() {
+		return "Course [id=" + id + ", name=" + name + ", author=" + author + "]";
+	}
+	//Constructor
+	//Getters
+	//toString
+	
+}

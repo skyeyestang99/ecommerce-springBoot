@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;CourseController.java&apos; to &apos;com.yizhou.springboot.springbootproject.CourseController.java&apos;&#x0A;- Original project: &apos;spring-boot-project&apos;&#x0A;- Destination element: &apos;com.yizhou.springboot.springbootproject.CourseController.java&apos;&#x0A;- Original element: &apos;com.yizhou.springboot.springbootproject.CourseController.java&apos;" description="Copy compilation unit" destination="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.yizhou.springboot.springbootproject{CourseController.java" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.yizhou.springboot.springbootproject{CourseController.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1668109965915" units="1" version="1.0"/>
+</session>

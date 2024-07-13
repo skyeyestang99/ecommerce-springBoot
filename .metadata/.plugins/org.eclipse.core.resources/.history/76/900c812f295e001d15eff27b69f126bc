@@ -1,0 +1,22 @@
+package com.learnspringboot.spring.learnspring;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.learnspringboot.spring.learnspring.game.GameRunner;
+import com.learnspringboot.spring.learnspring.game.MarioGame;
+import com.learnspringboot.spring.learnspring.game.SuperContraGame;
+import com.learnspringboot.spring.learnspring.game.SuperContraGame;
+@SpringBootApplication
+public class LearnspringApplication {
+
+	public static void main(String[] args) {
+		//SpringApplication.run(LearnspringApplication.class, args);
+		//MarioGame game=new MarioGame();
+		Pacman game = new Pacman();
+		//MarioGame game = new MarioGame();
+		GameRunner runner=new GameRunner(game);
+		runner.run();
+	}
+
+}

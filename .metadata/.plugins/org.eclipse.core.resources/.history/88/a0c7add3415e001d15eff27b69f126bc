@@ -1,0 +1,14 @@
+package com.yizhou.springboot.springbootproject;
+import java.util.Arrays;
+import java.util.List;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class CourseController {
+	public List<Course> retrieveAllCourses(){
+		return Arrays.asList(
+				new Course(1,"Learm AWS", "for experience"),
+				new Course(1,"Learm DevOps", "for experience")
+				);
+	}
+}

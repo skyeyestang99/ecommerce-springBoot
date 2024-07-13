@@ -1,0 +1,5 @@
+package com.yizhou.springboot.springbootproject;
+
+public class Course {
+
+}

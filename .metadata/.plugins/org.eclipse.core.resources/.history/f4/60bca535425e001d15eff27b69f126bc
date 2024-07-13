@@ -1,0 +1,12 @@
+package com.yizhou.springboot.springbootproject;
+
+public class Course {
+	private long id;
+	private String name;
+	private String author;
+	
+	//Constructor
+	//Getters
+	//toString
+	
+}

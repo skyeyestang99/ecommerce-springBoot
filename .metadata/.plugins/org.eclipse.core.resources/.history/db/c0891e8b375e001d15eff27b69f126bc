@@ -1,0 +1,9 @@
+package com.learnspringboot.spring.learnspring.web;
+import java.util.List;
+import java.util.Arrays;
+public class DataService {
+	List<Integer> getData(){
+		List<Integer> list=Arrays.asList(1,2,3);
+		return list;
+	}
+}

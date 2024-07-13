@@ -1,0 +1,10 @@
+package com.yizhou.springboot.springbootproject;
+
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class CourseController {
+	public List<Course> retrieveAllCourses(){
+		return Arrays.asList(null);
+	}
+}
