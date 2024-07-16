@@ -3,6 +3,7 @@ package com.ecommerce.invertory_service.service;
 import com.ecommerce.invertory_service.dto.InventoryResponse;
 import com.ecommerce.invertory_service.repository.InventoryRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +15,7 @@ public class InventoryService {
 
     private final InventoryRepository inventoryRepository;
 
+    @Cacheable(value = "inventory", key = "#skuCode")
     @Transactional(readOnly = true) //optimizes the transaction for read operations:Some databases can optimize read-only transactions by not setting locks on the data
     public List<InventoryResponse> isInStock(List<String> skuCode){
         return inventoryRepository.findBySkuCodeIn(skuCode).stream()

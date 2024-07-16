@@ -54,6 +54,14 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+<!--		Cache-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cache</artifactId>
+			<scope>${javax-cache.version}</scope>
+		</dependency>
+<!--		Cache-->
 	</dependencies>
 
 	<build>

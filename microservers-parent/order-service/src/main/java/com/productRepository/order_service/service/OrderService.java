@@ -1,6 +1,5 @@
 package com.productRepository.order_service.service;
 
-import com.productRepository.order_service.dto.InventoryResponse;
 import com.productRepository.order_service.dto.OrderLineItemsDTO;
 import com.productRepository.order_service.dto.OrderRequest;
 import com.productRepository.order_service.model.Order;
@@ -9,10 +8,7 @@ import com.productRepository.order_service.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.reactive.function.client.WebClient;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,7 +18,7 @@ import java.util.UUID;
 public class OrderService {
 
     private final OrderRepository orderRepository;
-    private final WebClient webClient;
+    private final InventoryCheckService inventoryCheckService;
 
     public void placeOrder(OrderRequest orderRequest){
         Order order = new Order();
@@ -38,17 +34,7 @@ public class OrderService {
                 .map(OrderLineItems::getSkuCode)
                 .toList();
 
-        // Call Inventory Service, and place order if product is in stock
-        InventoryResponse[] inventoryResponsesArray = webClient.get()
-                .uri("http://localhost:8082/api/inventory",
-                        uriBuilder -> uriBuilder.queryParam("skuCode", skuCodes).build()
-                )
-                .retrieve()
-                .bodyToMono(InventoryResponse[].class)
-                .block(); //block makes a sync request
-
-        boolean allProductsInStock = Arrays.stream(inventoryResponsesArray)
-                .allMatch(InventoryResponse::isInStock);
+        boolean allProductsInStock = inventoryCheckService.checkIfInStock(skuCodes);
 
         if(allProductsInStock){
             orderRepository.save(order);
