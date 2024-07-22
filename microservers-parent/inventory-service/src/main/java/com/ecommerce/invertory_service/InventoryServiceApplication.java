@@ -8,12 +8,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 
+
+
 @SpringBootApplication
 @EnableCaching
-public class InvertoryServiceApplication {
+public class InventoryServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(InvertoryServiceApplication.class, args);
+		SpringApplication.run(InventoryServiceApplication.class, args);
 	}
 
 	@Bean

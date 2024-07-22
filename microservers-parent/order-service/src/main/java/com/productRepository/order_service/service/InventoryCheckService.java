@@ -12,13 +12,13 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class InventoryCheckService {
-    private final WebClient webClient;
+    private final WebClient.Builder webClientBuilder;
 
     @Cacheable(value = "inventoryCheck", key = "#skuCodes")
     public boolean checkIfInStock(List<String> skuCodes) {
         // Call Inventory Service, and place order if product is in stock
-        InventoryResponse[] inventoryResponsesArray = webClient.get()
-                .uri("http://localhost:8082/api/inventory",
+        InventoryResponse[] inventoryResponsesArray = webClientBuilder.build().get()
+                .uri("http://inventory-service/api/inventory",
                         uriBuilder -> uriBuilder.queryParam("skuCode", skuCodes).build()
                 )
                 .retrieve()

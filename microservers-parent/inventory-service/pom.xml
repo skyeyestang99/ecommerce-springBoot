@@ -3,15 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.1</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<groupId>com.ecommerce</groupId>
+		<artifactId>microservices-parent</artifactId>
+		<version>1.0-SNAPSHOT</version>
 	</parent>
-	<groupId>com.ecommerce</groupId>
-	<artifactId>invertory-service</artifactId>
+	<artifactId>inventory-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>invertory-service</name>
+	<name>inventory-service</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
@@ -29,6 +27,7 @@
 	<properties>
 		<java.version>22</java.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -79,6 +78,11 @@
 		</dependency>
 
 		<!--		redis-->
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

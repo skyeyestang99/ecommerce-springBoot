@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+    <excludeFromCompile>
+      <directory url="file://$PROJECT_DIR$/discovery-server/src/main/resources/archetype-resources" includeSubdirectories="true" />
+    </excludeFromCompile>
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
@@ -10,17 +13,19 @@
         <module name="api-gateway" />
         <module name="product-service" />
         <module name="order-service" />
-        <module name="invertory-service" />
+        <module name="discovery-server" />
+        <module name="inventory-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="discovery-server" target="22" />
+      <module name="archetype-resources" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="api-gateway" options="-parameters" />
-      <module name="invertory-service" options="-parameters" />
+      <module name="discovery-server" options="-parameters" />
+      <module name="inventory-service" options="-parameters" />
       <module name="order-service" options="-parameters" />
       <module name="product-service" options="-parameters" />
     </option>

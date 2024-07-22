@@ -1,4 +1,4 @@
-package com.ecommerce.product_service.controller;
+ package com.ecommerce.product_service.controller;
 
 import com.ecommerce.product_service.dto.ProductRequest;
 import com.ecommerce.product_service.dto.ProductResponse;
