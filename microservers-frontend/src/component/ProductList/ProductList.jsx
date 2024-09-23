@@ -10,16 +10,16 @@ export default function ProductList() {
             <h1 className='list-title'>Ecommerce Product Page</h1>
             <div className='product-grid'>
                 <Product 
-                    productName='iPhone'
-                    skuCode='iphone_13_red'
+                    productName='iphone_15'
+                    skuCode='iphone_15'
                 />
                 <Product 
-                    productName='iPhone 13 Red'
-                    skuCode='iphone_13_red'
+                    productName='iphone_15'
+                    skuCode='iphone_15'
                 />
                 <Product
-                    productName='iPhone 9'
-                    skuCode='iphone_13_red'
+                    productName='iphone_15'
+                    skuCode='iphone_15'
                 />
             </div>
         </div>

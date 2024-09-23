@@ -6,19 +6,21 @@ import { useEffect } from "react";
 export default function Product(props) {
     const [load, setLoad] = useState(false);
     const [orderSuccess, setOrderSuccess] = useState(null);
+    const [quantity, setQuantity] = useState(1)
+
+    const handleQuantityChange = (e) => {
+      setQuantity(e.target.value)
+      console.log(quantity)
+    };
 
     async function handleOrder() {
       console.log('clicked')
       setLoad(true);
 
       const orderData = {
-        'orderLineItemsDTOList': [
-          {
-              'skuCode': props.skuCode,
-              'price': 1212,
-              'quantity': 1
-          }
-        ]
+        'skuCode': props.skuCode,
+        'price': 1212,
+        'quantity': quantity
       };
 
       try{
@@ -32,8 +34,14 @@ export default function Product(props) {
 
         const result = await response.text();
 
-        console.log('got a response: ', result)
-        setOrderSuccess(true)
+        if(result === 'Oops! Something went wrong, please order after some time!'){
+          console.log('failed:  ', result)
+          setOrderSuccess(false)
+        }
+        else {
+          console.log('got a response: ', result)
+          setOrderSuccess(true)
+        }
       } catch(error) {
         console.log('Order failed', error.message)
         setOrderSuccess(false)
@@ -50,6 +58,15 @@ export default function Product(props) {
               <div className="product-details">
                   <h3 className="product-name">{props.productName}</h3>
                   <p className="product-skuCode">SKU Code: {props.skuCode}</p>
+                  <div className='quanity-input'>
+                    <label>Quantity: </label>
+                    <input
+                        type='number'
+                        value={quantity}
+                        min="1"
+                        onChange={handleQuantityChange}
+                    />
+                  </div>
                   <div className="order-service">
                       <button className="order-button" onClick={handleOrder}>Order</button>
                   </div>
