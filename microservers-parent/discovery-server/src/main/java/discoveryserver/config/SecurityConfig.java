@@ -9,8 +9,10 @@ import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 
+import java.util.EventListener;
+
 @Configuration
-public class SecurityConfig {
+public class SecurityConfig implements EventListener {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().ignoringRequestMatchers("/eureka/**");
