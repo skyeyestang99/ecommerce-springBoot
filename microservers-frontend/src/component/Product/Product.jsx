@@ -24,7 +24,7 @@ export default function Product(props) {
       };
 
       try{
-        const response = await fetch('http://localhost:8081/api/order', {
+        const response = await fetch('http://localhost:9000/api/order', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

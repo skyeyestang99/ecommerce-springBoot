@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 @RestController
 @RequestMapping("api/order")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000") //all request from localhost: 3000
 public class OrderController {
 
     private static final Logger log = LoggerFactory.getLogger(OrderController.class);
