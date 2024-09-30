@@ -2,11 +2,14 @@ import './Product.css'
 import React, { useState } from "react";
 import ReactLoading from 'react-loading';
 import { useEffect } from "react";
+import { useKeycloak } from '@react-keycloak/web';
+import { postOrder } from '../../service/order/postOrder';
 
 export default function Product(props) {
     const [load, setLoad] = useState(false);
     const [orderSuccess, setOrderSuccess] = useState(null);
     const [quantity, setQuantity] = useState(1)
+    const { keycloak } = useKeycloak()
 
     const handleQuantityChange = (e) => {
       setQuantity(e.target.value)
@@ -20,27 +23,27 @@ export default function Product(props) {
       const orderData = {
         'skuCode': props.skuCode,
         'price': 1212,
-        'quantity': quantity
+        'quantity': quantity,
+        'userDetails': {
+          'firstName':keycloak.tokenParsed?.firstName,
+          'lastName':keycloak.tokenParsed?.lastName,
+          'email': keycloak.tokenParsed?.email,
+        }
       };
 
       try{
-        const response = await fetch('http://localhost:9000/api/order', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(orderData)
-        });
-
-        const result = await response.text();
-
-        if(result === 'Oops! Something went wrong, please order after some time!'){
-          console.log('failed:  ', result)
-          setOrderSuccess(false)
-        }
-        else {
-          console.log('got a response: ', result)
-          setOrderSuccess(true)
+        if(keycloak && keycloak.authenticated) {
+          await keycloak.updateToken(30)
+          const token = keycloak.token
+          const result = await postOrder(token, orderData)
+          if(result !== 'Order Placed Successfully'){
+            console.log('failed:  ', result)
+            setOrderSuccess(false)
+          }
+          else {
+            console.log('success: ', result)
+            setOrderSuccess(true)
+          }
         }
       } catch(error) {
         console.log('Order failed', error.message)
@@ -58,6 +61,8 @@ export default function Product(props) {
               <div className="product-details">
                   <h3 className="product-name">{props.productName}</h3>
                   <p className="product-skuCode">SKU Code: {props.skuCode}</p>
+                  <p className="product-price">Price: {props.price}</p>
+                  <p className="product-description">Description: {props.description}</p>
                   <div className='quanity-input'>
                     <label>Quantity: </label>
                     <input

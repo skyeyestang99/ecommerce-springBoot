@@ -4,7 +4,9 @@ import com.ecommerce.product_service.dto.ProductRequest;
 import com.ecommerce.product_service.dto.ProductResponse;
 import com.ecommerce.product_service.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,8 +20,15 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createProduct(@RequestBody ProductRequest productRequest){
+    public void createProduct(@RequestBody ProductRequest productRequest) {
         productService.createProduct(productRequest);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> removeProduct(@PathVariable String id) {
+        boolean isRemoved = productService.removeProduct(id);
+        if(!isRemoved) return new ResponseEntity<>("Product not found", HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>("Product removed successfully", HttpStatus.OK);
     }
 
     @GetMapping
