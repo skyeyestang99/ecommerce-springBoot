@@ -58,7 +58,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-cache</artifactId>
-			<scope>${javax-cache.version}</scope>
+			<scope>runtime</scope>
 		</dependency>
 <!--		Cache-->
 	<!--		redis-->
