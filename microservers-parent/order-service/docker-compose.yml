@@ -1,0 +1,10 @@
+version: '3'
+services:
+  order-service:
+    build: .
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql:/database-1.c5cssq6sys87.us-east-2.rds.amazonaws.com:3306/order_service
+      - SPRING_DATASOURCE_USERNAME=database-1
+      - SPRING_DATASOURCE_PASSWORD=database-1
