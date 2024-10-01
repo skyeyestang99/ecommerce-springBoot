@@ -13,12 +13,12 @@
         <module name="api-gateway" />
         <module name="product-service" />
         <module name="order-service" />
-        <module name="discovery-server" />
         <module name="inventory-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="archetype-resources" target="1.8" />
+      <module name="discovery-server" target="22" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
