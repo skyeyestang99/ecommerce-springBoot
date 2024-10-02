@@ -1,9 +1,8 @@
-version: '3'
 services:
   inventory_service:
     build: .
     ports:
-      - "8082:8082"
+      - "5000:5000"
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://database-2-instance-1.c5cssq6sys87.us-east-2.rds.amazonaws.com:3306/inventory_service
       - SPRING_DATASOURCE_USERNAME=database2
