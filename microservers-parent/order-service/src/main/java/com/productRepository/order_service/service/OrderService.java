@@ -6,7 +6,7 @@ import com.productRepository.order_service.event.OrderPlacedEvent;
 import com.productRepository.order_service.model.Order;
 import com.productRepository.order_service.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.kafka.core.KafkaTemplate;
+//import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -17,7 +17,7 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
     private final InventoryClient inventoryClient;
-    private final KafkaTemplate<String, OrderPlacedEvent> kafkaTemplate;
+//    private final KafkaTemplate<String, OrderPlacedEvent> kafkaTemplate;
 
     public void placeOrder(OrderRequest orderRequest){
 
@@ -31,10 +31,10 @@ public class OrderService {
             orderRepository.save(order);
 
             // Send the message to Kafka Topic
-            OrderPlacedEvent orderPlacedEvent = new OrderPlacedEvent(order.getOrderNumber(), orderRequest.userDetails().email());
-            System.out.println("preparing to send kafka");
-            kafkaTemplate.send("order-placed", orderPlacedEvent);
-            System.out.println(orderPlacedEvent);
+//            OrderPlacedEvent orderPlacedEvent = new OrderPlacedEvent(order.getOrderNumber(), orderRequest.userDetails().email());
+//            System.out.println("preparing to send kafka");
+//            kafkaTemplate.send("order-placed", orderPlacedEvent);
+//            System.out.println(orderPlacedEvent);
         }
         else{
             throw new RuntimeException("Product with skuCode" + orderRequest.skuCode() + "is not in stock");
